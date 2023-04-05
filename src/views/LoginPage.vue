@@ -1,23 +1,82 @@
-<template>  
-    <form v-on:submit.prevent>
-    <div class="mb-3">
-        <label for="user" class="form-label">Usuario</label>
-        <input type="text" class="form-control" id="user" aria-describedby="emailHelp">
+<template>
+    <div>
+      <h2>Iniciar sesión</h2>
+      <form @submit.prevent="login">
+        <div>
+          <label for="email">Correo electrónico:</label>
+          <input type="email" id="email" v-model="email" required>
+        </div>
+        <div>
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" v-model="password" required>
+        </div>
+        <button type="submit">Iniciar sesión</button>
+      </form>
+      <div v-if="error" class="error">{{ error }}</div>
     </div>
-    <div class="mb-3">
-        <label for="contraseña" class="form-label">contraseña</label>
-        <input type="password" class="form-control" id="contraseña">
-    </div>
-    <button type="submit" class="btn btn-primary">Aceptar</button>
-    </form>
-</template>
-
-
-<script>
-
-</script>
-
-
-<style>
-
-</style>
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {
+        email: '',
+        password: '',
+        error: '',
+      };
+    },
+    methods: {
+      login() {
+        if (this.password === 'password') {
+          console.log('Inicio de sesión exitoso!');
+        } else {
+          this.error = 'Error de autenticación. Por favor, verifica tus credenciales.';
+        }
+      },
+    },
+  };
+  </script>
+  
+  <style>
+  h2{
+    padding-top: 30px;
+    padding-left: 20px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  label {
+    display: block;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 50px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  button:hover {
+    background-color: #0069d9;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 20px;
+  }
+  </style>
+  
