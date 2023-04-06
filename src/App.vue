@@ -18,7 +18,7 @@ export default {
 
 <style>
 #app {
-
+  font-family: 'Montserrat', sans-serif;
   margin:0px;
   padding:0px;
 
