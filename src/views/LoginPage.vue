@@ -28,15 +28,13 @@ data() {
     };
 },
 methods: {
-    login() {
-
-    console.log(this.password)
-    if (this.password === 'password') {
-        this.error ='Inicio de sesión exitoso!'
-        this.clase = 'asd'
-        this.$router.push('/productoPage');
+   async login() {
+    if (this.password === 'password' && this.email === 'usuario1@tienda.com') {
+        this.error =  await 'Inicio de sesión exitoso!'
+        this.clase = 'success'
+        this.$router.push('/HomeRoot');
     } else {
-        this.error = 'Error de autenticación. Por favor, verifica tus datos.';
+        this.error = await 'Error de autenticación. Por favor, verifica tus datos.';
         this.clase = 'error'
     }
     },
@@ -97,7 +95,7 @@ color: red;
 margin-top: 20px;
 }
 
-.asd{
+.success{
     color: green;
     margin-top: 20px;
 }
