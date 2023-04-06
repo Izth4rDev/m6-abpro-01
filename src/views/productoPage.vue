@@ -94,7 +94,7 @@ export default {
     },
   methods:{
         registrarProducto: function (producto){    
-           // let newCarro = []
+            //retorna true o false si este objeto existe el arreglo
             let isOn = this.newProducts.some((element)=>{ 
                 return producto.id == element.id
             });
