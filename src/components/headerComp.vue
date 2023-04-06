@@ -6,9 +6,9 @@
         <div class="d-flex">
             <nav>
                 <ul id="list-contenedor" class="d-flex justify-content-around">
-                    <router-link class="nav-link px-3" to="/">Inicio</router-link>
+                    <router-link class="nav-link px-3" to="/HomeRoot">Inicio</router-link>
                     <router-link class="nav-link px-3" to="/productoPage">Productos</router-link>
-                    <router-link class="nav-link px-3" to="/LoginPage">Login</router-link>
+                    <router-link class="nav-link px-3" to="/">Login</router-link>
                 </ul>
             </nav>
         </div>

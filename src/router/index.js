@@ -7,12 +7,12 @@ import Productos from '@/views/productoPage.vue'
 
 const routes = [
   {
-    path: "/",
+    path: "/HomeRoot",
     name: "HomeRoot",
     component: Home
   },
   {
-    path: "/LoginPage",
+    path: "/",
     name: "LoginPage",
     component:LoginPage
   },
