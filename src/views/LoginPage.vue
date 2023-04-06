@@ -11,26 +11,33 @@
         <input type="password" id="password" v-model="password" placeholder="tu contraseña" required>
     </div>
     </form>    
-    <div class="btn"><button type="submit">Iniciar sesión</button></div>
-    <div v-if="error" class="error">{{ error }}</div>
+    <div class="btn"><button v-on:click="login()" type="submit">Iniciar sesión</button></div>
+    <div v-if="error" v-bind:class="clase">{{ error }}</div>
+    <div v-else v-bind:class="clase">{{ error }}</div>
 </div>
 </template>
 
 <script>
-export default {
+export default {    
 data() {
     return {
     email: '',
     password: '',
     error: '',
+    clase: ''
     };
 },
 methods: {
     login() {
+
+    console.log(this.password)
     if (this.password === 'password') {
-        console.log('Inicio de sesión exitoso!');
+        this.error ='Inicio de sesión exitoso!'
+        this.clase = 'asd'
+        this.$router.push('/productoPage');
     } else {
         this.error = 'Error de autenticación. Por favor, verifica tus datos.';
+        this.clase = 'error'
     }
     },
 },
@@ -89,4 +96,10 @@ background-color: #0069d9;
 color: red;
 margin-top: 20px;
 }
+
+.asd{
+    color: green;
+    margin-top: 20px;
+}
+
 </style>
