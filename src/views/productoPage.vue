@@ -33,7 +33,6 @@ export default {
 };
 </script>
 
-
 <style>
 card-title{
 padding-top: 40px;
@@ -46,7 +45,6 @@ padding-top: 40px;
 text-align: center;
 font-family: 'Montserrat', sans-serif;
 }
-
 
 .btn{
 margin-top: 20px;
@@ -69,8 +67,4 @@ button:hover {
 background-color: #0069d9;
 }
 
-.error {
-color: red;
-margin-top: 20px;
-}
 </style>
