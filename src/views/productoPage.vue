@@ -16,9 +16,7 @@
                             <div v-for="carro in newProducts" :key="carro.id" class="card-body p-4">
                                 <div class="row d-flex justify-content-between align-items-center">
                                 <div class="col-md-2 col-lg-2 col-xl-2">
-                                    <img
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                    <img v-bind:src="carro.image" class="img-fluid rounded-3" alt="Cotton T-shirt">
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-3">
                                     <p class="lead fw-normal mb-2">{{carro.name}}</p>
@@ -68,7 +66,7 @@
 
     <div class="container row">
         <div class="card col-3 mx-2 mt-4" v-for="fila in producto" :key="fila.name" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
+            <img v-bind:src="fila.image" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{fila.name}}</h5>
                 <p class="card-text">{{fila.description}}</p>
@@ -107,6 +105,7 @@ export default {
                 description: producto.description,
                 price: producto.price,
                 stock: producto.stock,
+                image: producto.image,
                 cantidad: 1,
             }
 
