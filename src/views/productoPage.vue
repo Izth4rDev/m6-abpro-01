@@ -47,14 +47,6 @@ text-align: center;
 font-family: 'Montserrat', sans-serif;
 }
 
-input {
-border: 1px solid #ccc;
-border-radius: 4px;
-padding: 8px;
-width: 100%;
-margin-bottom: 50px;
-font-family: 'Montserrat', sans-serif;
-}
 
 .btn{
 margin-top: 20px;
