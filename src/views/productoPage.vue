@@ -1,5 +1,5 @@
 <template>
-    <section class="h-100" style="background-color: #eee;">
+     <section class="h-100" style="background-color: #eee;">
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-10">
@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-3">
                                     <p class="lead fw-normal mb-2">{{carro.name}}</p>
-                                    <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
+                                    <p><span class="text-muted">Descripcion: </span>{{ carro.description }}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                     <button class="btn btn-link px-2"
@@ -30,7 +30,7 @@
                                     <i class="fas fa-minus"></i>
                                     </button>
 
-                                    <input id="form1" min="0" name="quantity" value="2" type="number"
+                                    <input id="form1" min="0" name="quantity" v-model="carro.cantidad" type="number"
                                     class="form-control form-control-sm" />
 
                                     <button class="btn btn-link px-2"
@@ -39,23 +39,13 @@
                                     </button>
                                 </div>
                                 <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                    <h5 class="mb-0">$499</h5>
+                                    <h5 class="mb-0">{{carro.price}}</h5>
                                 </div>
                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                    <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"> X </i></a>
+                                    <a href="#!" v-on:click="eliminarProducto(carro)" class="text-danger"><i class="fas fa-trash fa-lg"> X </i></a>
                                 </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="card mb-4">
-                        <div class="card-body p-4 d-flex flex-row">
-                            <div class="form-outline flex-fill">
-                            <input type="text" id="form1" class="form-control form-control-lg" />
-                            <label class="form-label" for="form1">Discound code</label>
-                            </div>
-                            <button type="button" class="btn btn-outline-warning btn-lg ms-3">Apply</button>
-                        </div>
                         </div>
 
                         <div class="card">
@@ -68,13 +58,14 @@
             </div>
         </div>
     </section>
-     <!-- <tr v-for="fila in producto" :key="fila.name">
-              <td>{{ fila.id }}</td>
-              <td>{{ fila.name }}</td>
-              <td>{{ fila.description }}</td>
-              <td>{{ fila.price }}</td>
-              <td>{{ fila.stock }}</td>
-        </tr> -->
+<!-- <tr v-for="fila2 in newProducts" :key="fila2.name">
+            <td>{{ fila2.id }}</td>
+            <td>{{ fila2.name }}</td>
+            <td>{{ fila2.description }}</td>
+            <td>{{ fila2.price }}</td>
+            <td>{{ fila2.stock }}</td>
+</tr> -->
+
     <div class="container row">
         <div class="card col-3 mx-2 mt-4" v-for="fila in producto" :key="fila.name" style="width: 18rem;">
             <img src="" class="card-img-top" alt="...">
@@ -92,27 +83,62 @@
 
 <script>
 import { ProductsService } from "@/services/productsService";
-let newProducts = ['holi', 'holi', 'holi', 'holi','holi'];
-
 
 export default {
-  name: "UserList",
+  name: "productoPage",
   data: function() {
     return {
-      producto: ProductsService.getAllProducts()
+      producto: ProductsService.getAllProducts(),
+      newProducts:[]
     };
     },
-    methods:{
+  methods:{
         registrarProducto: function (producto){    
-            let cantidad = 1;
-            newProducts.push(producto.id,producto.name,producto.description,producto.price, cantidad);
+           // let newCarro = []
+            let isOn = this.newProducts.some((element)=>{ 
+                return producto.id == element.id
+            });
+            console.log(isOn)
+           if(!isOn){
+
+            let product ={
+                id:producto.id,
+                name: producto.name,
+                description: producto.description,
+                price: producto.price,
+                stock: producto.stock,
+                cantidad: 1,
+            }
+
+            this.newProducts.push(product);
+
+           }else{
+
+            this.newProducts = this.newProducts.map((element)=>{
+
+                if(element.id === producto.id){
+
+                    element.cantidad = element.cantidad+1;
+                    return element;
+
+                }else{
+                    
+                    return element;
+                }
+
+            })
+           }
+        },
+        eliminarProducto: function (producto){
+ 
+           this.newProducts = this.newProducts.filter((element)=>{
+            return element.id != producto.id;
+
+           })
         }
     }
-
 }
   
-
-
 </script>
 
 
