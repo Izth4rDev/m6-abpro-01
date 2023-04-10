@@ -3,7 +3,6 @@
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-10">
-
                         <div class="d-flex justify-content-between align-items-center mb-4">
                         <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
                         <div>
@@ -63,7 +62,11 @@
             <td>{{ fila2.price }}</td>
             <td>{{ fila2.stock }}</td>
 </tr> -->
-
+   <!-- Buscar productos    -->
+   <div class="input-group">
+         <input id="inputBuscador" v-model="inputBuscador" v-on:keyup="buscarProducto()" type="Buscar" class="form-control rounded" placeholder="Buscar" aria-label="Buscar" aria-describedby="search-addon"  />
+        <button type="button" class="btn btn-outline-primary" v-on:click="buscarProducto()">Buscar</button>
+    </div>
     <div class="container row">
         <div class="card col-3 mx-2 mt-4" v-for="fila in producto" :key="fila.name" style="width: 18rem;">
             <img v-bind:src="fila.image" class="card-img-top" alt="...">
@@ -87,7 +90,8 @@ export default {
   data: function() {
     return {
       producto: ProductsService.getAllProducts(),
-      newProducts:[]
+      newProducts:[],
+      productoTotal:ProductsService.getAllProducts()
     };
     },
   methods:{
@@ -134,7 +138,23 @@ export default {
             return element.id != producto.id;
 
            })
-        }
+        },
+        buscarProducto: function (){
+            if (this.inputBuscador === ''){
+               this.producto = this.productoTotal;
+            }else {            
+            
+               const searchTerm = this.inputBuscador.toLowerCase();
+               this.producto = this.producto.filter(element => {
+               const name1 = element.name.toLowerCase();
+               const description1 = element.description.toLowerCase();
+           
+        
+               return name1.includes(searchTerm) || description1.includes(searchTerm) ;
+               })
+            }
+            
+        },
     }
 }
   
