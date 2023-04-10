@@ -83,15 +83,15 @@
 </template>
 
 <script>
-import { ProductsService } from "@/services/productsService";
 
 export default {
   name: "productoPage",
   data: function() {
     return {
-      producto: ProductsService.getAllProducts(),
+      producto: [],
       newProducts:[],
-      productoTotal:ProductsService.getAllProducts()
+      productoTotal: [],
+      inputBuscador: ''
     };
     },
   methods:{
@@ -155,6 +155,24 @@ export default {
             }
             
         },
+        async extraerData() {
+            let resultado;
+        try {
+            const response = await fetch("../../data.json");
+            if (!response.ok) {
+                throw new Error("No se pudo obtener el archivo de datos");
+            }
+            resultado = await response.json();
+            return resultado;
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    },
+    async mounted() {
+        this.producto = await this.extraerData();
+        this.productoTotal = this.producto;
     }
 }
   
