@@ -179,55 +179,37 @@ methods:{
 </script>
 
 <style>
-.card-title{
-font-family: 'Montserrat', sans-serif;
-}
-.card-text{
-font-family: 'Montserrat', sans-serif;
-}
-.btn-agregar{
-background-color: #EA4C89;
-border-radius: 8px;
-border-style: none;
-box-sizing: border-box;
-color: #FFFFFF;
-cursor: pointer;
-display: inline-block;
-font-family: 'Montserrat', sans-serif;
-font-size: 14px;
-font-weight: 500;
-height: 40px;
-line-height: 20px;
-list-style: none;
-margin: 0;
-margin-top: auto;
-outline: none;
-padding: 10px 16px;
-position: relative;
+card-title{
+padding-top: 40px;
 text-align: center;
+font-family: 'Montserrat', sans-serif;
+}
+
+card-body{
+padding-top: 40px;
+text-align: center;
+font-family: 'Montserrat', sans-serif;
+}
+
+.btn{
+margin-top: 20px;
+margin-bottom: 20px;
+padding: 8px;
+width: 100%;
+}
+
+button {
+background-color: #007bff;
+color: #fff;
 text-decoration: none;
-transition: color 100ms;
-vertical-align: baseline;
-user-select: none;
--webkit-user-select: none;
-touch-action: manipulation;
-}
-
-.btn-agregar:hover,
-.btn-agregar:focus {
-background-color: #F082AC;
-color: #1e1e1e;
-}
-
-.btn-buscar{
-background-color: #EA4C89;
-border-radius: 8px;
 border-style: none;
-box-sizing: border-box;
-color: #FFFFFF;
+padding: 10px 20px;
+cursor: pointer;
 font-family: 'Montserrat', sans-serif;
-text-align: center;
+}
 
+button:hover {
+background-color: #0069d9;
 }
 
 </style>
