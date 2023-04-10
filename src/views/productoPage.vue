@@ -179,23 +179,53 @@ methods:{
 </script>
 
 <style>
-card-title{
+.card-title{
 padding-top: 40px;
 text-align: center;
 font-family: 'Montserrat', sans-serif;
 }
 
-card-body{
+.card-body{
 padding-top: 40px;
 text-align: center;
 font-family: 'Montserrat', sans-serif;
 }
 
-.btn{
-margin-top: 20px;
-margin-bottom: 20px;
-padding: 8px;
-width: 100%;
+
+
+.btn-agregar{
+background-color: #EA4C89;
+border-radius: 8px;
+border-style: none;
+box-sizing: border-box;
+color: #FFFFFF;
+cursor: pointer;
+display: inline-block;
+font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+font-weight: 500;
+height: 40px;
+line-height: 20px;
+list-style: none;
+margin: 0;
+outline: none;
+padding: 10px 16px;
+position: relative;
+text-align: center;
+text-decoration: none;
+transition: color 100ms;
+vertical-align: baseline;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+font-family: 'Montserrat', sans-serif;
+}
+
+.btn-agregar:hover,
+.btn-agregar:focus {
+background-color: #F082AC;
+color: #424242;
+font-family: 'Montserrat', sans-serif;
 }
 
 button {
