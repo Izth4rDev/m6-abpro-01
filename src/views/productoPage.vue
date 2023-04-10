@@ -90,7 +90,8 @@ export default {
   data: function() {
     return {
       producto: ProductsService.getAllProducts(),
-      newProducts:[]
+      newProducts:[],
+      productoTotal:ProductsService.getAllProducts()
     };
     },
   methods:{
