@@ -1,4 +1,5 @@
 <template>
+    <headerComp></headerComp>
      <section class="h-100" style="background-color: #eee;">
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -84,97 +85,103 @@
 
 <script>
 
+import headerComp from '../components/headerComp.vue'
+
 export default {
-  name: "productoPage",
-  data: function() {
-    return {
-      producto: [],
-      newProducts:[],
-      productoTotal: [],
-      inputBuscador: ''
-    };
+   
+    name: "productoPage",
+    components:{
+        headerComp
     },
-  methods:{
-        registrarProducto: function (producto){    
-            //retorna true o false si este objeto existe el arreglo
-            let isOn = this.newProducts.some((element)=>{ 
-                return producto.id == element.id
-            });
-            console.log(isOn)
-           if(!isOn){
+    data: function() {
+        return {
+        producto: [],
+        newProducts:[],
+        productoTotal: [],
+        inputBuscador: ''
+        };
+        },
+    methods:{
+            registrarProducto: function (producto){    
+                //retorna true o false si este objeto existe el arreglo
+                let existe = this.newProducts.some((element)=>{ 
+                    return producto.id == element.id
+                });
 
-            let product ={
-                id:producto.id,
-                name: producto.name,
-                description: producto.description,
-                price: producto.price,
-                stock: producto.stock,
-                image: producto.image,
-                cantidad: 1,
-            }
+            if(!existe){
 
-            this.newProducts.push(product);
-
-           }else{
-
-            this.newProducts = this.newProducts.map((element)=>{
-
-                if(element.id === producto.id){
-
-                    element.cantidad = element.cantidad+1;
-                    return element;
-
-                }else{
-                    
-                    return element;
+                let product ={
+                    id:producto.id,
+                    name: producto.name,
+                    description: producto.description,
+                    price: producto.price,
+                    stock: producto.stock,
+                    image: producto.image,
+                    cantidad: 1,
                 }
 
+                this.newProducts.push(product);
+
+            }else{
+
+                this.newProducts = this.newProducts.map((element)=>{
+
+                    if(element.id === producto.id){
+
+                        element.cantidad = element.cantidad+1;
+                        return element;
+
+                    }else{
+                        
+                        return element;
+                    }
+
+                })
+            }
+            },
+            eliminarProducto: function (producto){
+
+            this.newProducts = this.newProducts.filter((element)=>{
+                return element.id != producto.id;
+
             })
-           }
-        },
-        eliminarProducto: function (producto){
- 
-           this.newProducts = this.newProducts.filter((element)=>{
-            return element.id != producto.id;
-
-           })
-        },
-        buscarProducto: function (){
-            if (this.inputBuscador === ''){
-               this.producto = this.productoTotal;
-            }else {            
+            },
+            buscarProducto: function (){
+                if (this.inputBuscador === ''){
+                this.producto = this.productoTotal;
+                }else {            
+                
+                const searchTerm = this.inputBuscador.toLowerCase();
+                this.producto = this.producto.filter(element => {
+                const name1 = element.name.toLowerCase();
+                const description1 = element.description.toLowerCase();
             
-               const searchTerm = this.inputBuscador.toLowerCase();
-               this.producto = this.producto.filter(element => {
-               const name1 = element.name.toLowerCase();
-               const description1 = element.description.toLowerCase();
-           
-        
-               return name1.includes(searchTerm) || description1.includes(searchTerm) ;
-               })
-            }
             
-        },
-        async extraerData() {
-            let resultado;
-        try {
-            const response = await fetch("../../data.json");
-            if (!response.ok) {
-                throw new Error("No se pudo obtener el archivo de datos");
-            }
-            resultado = await response.json();
-            return resultado;
+                return name1.includes(searchTerm) || description1.includes(searchTerm) ;
+                })
+                }
+                
+            },
+            async extraerData() {
+                let resultado;
+            try {
+                const response = await fetch("../../data.json");
+                if (!response.ok) {
+                    throw new Error("No se pudo obtener el archivo de datos");
+                }
+                resultado = await response.json();
+                return resultado;
 
-            } catch (error) {
-                console.error(error);
+                } catch (error) {
+                    console.error(error);
+                }
             }
+        },
+        async mounted() {
+            this.producto = await this.extraerData();
+            this.productoTotal = this.producto;
         }
-    },
-    async mounted() {
-        this.producto = await this.extraerData();
-        this.productoTotal = this.producto;
     }
-}
   
 </script>
 
