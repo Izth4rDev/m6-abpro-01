@@ -65,22 +65,20 @@
         <button type="button" class="btn-buscar" v-on:click="buscarProducto()">Buscar</button>
     </div>
 
-<div class="container row">
+<div class="container-fluid row justify-content-center gap-3 ">
  <template  v-for="fila in producto" :key="fila.name">
-    <div class="container-fluid row justify-content-center gap-3">
-        <div class="card col-3 mx-2 mt-4" v-if="fila.stock > 0" style="width: 18rem; margin: 3em;">
-            <img v-bind:src="fila.image" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{fila.name}}</h5>
-                <p class="card-text">Material:{{fila.description}}</p>
-                <p class="card-text">$ {{fila.price}}</p> 
-                <p class="card-text">Stock: {{fila.stock}}</p>
-                <a href="#" v-on:click="registrarProducto(fila)" class="btn-agregar">Agregar</a>
-              </div>
-            </div>
-          </div>
-        </template>
-    </div>
+        <div class="card col-3 mx-2 mt-4" v-if="fila.stock > 0" style="width: 18rem; margin: 3em;" >  
+                <img v-bind:src="fila.image" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{fila.name}}</h5>
+                    <p class="card-text">Material:{{fila.description}}</p>
+                    <p class="card-text">$ {{fila.price}}</p> 
+                    <p class="card-text">Stock: {{fila.stock}}</p>
+                    <a href="#" v-on:click="registrarProducto(fila)" class="btn-agregar">Agregar</a>
+                </div>
+        </div>
+    </template>
+</div>
    
 </template>
 
