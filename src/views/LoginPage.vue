@@ -28,17 +28,32 @@ data() {
     };
 },
 methods: {
-   async login() {
-    if (this.password === 'password' && this.email === 'usuario1@tienda.com') {
-        this.error =  await 'Inicio de sesión exitoso!'
-        this.clase = 'success'
-        this.$router.push('/HomeRoot');
-    } else {
-        this.error = await 'Error de autenticación. Por favor, verifica tus datos.';
-        this.clase = 'error'
-    }
+     async login() {
+        let resultado;
+        try {
+            const response = await fetch("../../users.json");
+            if (!response.ok) {
+                throw new Error("No se pudo obtener el archivo de datos");
+            }
+
+            resultado = await response.json();
+            console.log(resultado[0].correo)
+
+            if (this.password === resultado[0].password && this.email === resultado[0].correo) {
+                this.error = 'Inicio de sesión exitoso!'
+                this.clase = 'success'
+                this.$router.push('/HomeRoot');
+            } else {
+                this.error = 'Error de autenticación. Por favor, verifica tus datos.';
+                this.clase = 'error'
+            }
+
+            } catch (error) {
+                console.error(error);
+            }
+
+        },
     },
-},
 };
 </script>
 
