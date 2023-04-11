@@ -1,4 +1,5 @@
 <template>
+  <headerComp></headerComp>
   <div class="container mt-5">
     <div class="row">
       <div class="col text-center">
@@ -12,9 +13,12 @@
 
 <script>
 // @ is an alias to /src
+import headerComp from '../components/headerComp.vue'
 
 export default {
   name: "Home-Root",
-  components: {}
+  components: {
+    headerComp
+  }
 };
 </script>
