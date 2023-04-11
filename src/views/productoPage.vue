@@ -28,8 +28,10 @@
                                 <i class="fas fa-minus"></i>
                                 </button>
 
-                                <input id="form1" min="0" name="quantity" v-model="carro.cantidad" type="number"
+                                <input id="form1" min="0" name="quantity" v-model="carro.cantidad" v-on:click="calcularProducto(carro)" type="number"
                                 class="form-control form-control-sm" />
+                                
+                                
 
                                 <button class="btn btn-link px-2"
                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -37,7 +39,7 @@
                                 </button>
                             </div>
                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0">{{carro.price}}</h5>
+                                <h5 class="mb-0">{{carro.price}}-{{carro.total}}</h5>
                             </div>
                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                 <a href="#!" v-on:click="eliminarProducto(carro)" class="text-danger"><i class="fas fa-trash fa-lg"> X </i></a>
@@ -56,30 +58,30 @@
             </div>
         </div>
     </section>
-<!-- <tr v-for="fila2 in newProducts" :key="fila2.name">
-            <td>{{ fila2.id }}</td>
-            <td>{{ fila2.name }}</td>
-            <td>{{ fila2.description }}</td>
-            <td>{{ fila2.price }}</td>
-            <td>{{ fila2.stock }}</td>
-</tr> -->
+
    <!-- Buscar productos    -->
    <div class="seccion__buscar">
          <input id="inputBuscador" v-model="inputBuscador" v-on:keyup="buscarProducto()" type="Buscar" class="form-control rounded" placeholder="Buscar" aria-label="Buscar" aria-describedby="search-addon"  />
         <button type="button" class="btn-buscar" v-on:click="buscarProducto()">Buscar</button>
     </div>
-    <div class="container-fluid row justify-content-center gap-3">
-        <div class="card col-3 mx-2 mt-4" v-for="fila in producto" :key="fila.name" style="width: 18rem; margin: 3em;">
-            <img v-bind:src="fila.image" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{fila.name}}</h5>
-                <p class="card-text">Material:{{fila.description}}</p>
-                <p class="card-text">$ {{fila.price}}</p> 
-                <p class="card-text">Stock: {{fila.stock}}</p>
-                <a href="#" v-on:click="registrarProducto(fila)" class="btn-agregar">Agregar</a>
+    
+    <div class="container row">
+        <template  v-for="fila in producto" :key="fila.name">
+            <div class="card col-3 mx-2 mt-4" v-if="fila.stock > 0">
+                    <div style="width: 18rem;">
+                        <img v-bind:src="fila.image" class="card-img-top" alt="...">
+                        <div class="card-body">  
+                            <h5 class="card-title">{{fila.name}}</h5>
+                            <p class="card-text">{{fila.description}}</p>
+                            <p class="card-text">{{fila.price}}</p> 
+                            <p class="card-text">{{fila.stock}}</p>
+                            <a href="#" v-on:click="registrarProducto(fila)" class="btn btn-primary">Agregar</a>
+                        </div>
+                    </div>
             </div>
-        </div>
+        </template>
     </div>
+   
 
 </template>
 
@@ -102,6 +104,10 @@ export default {
         };
         },
     methods:{
+        calcularProducto: function (elemento){
+            elemento.total = elemento.cantidad*elemento.price;
+            console.log (elemento.total)
+        },
             registrarProducto: function (producto){    
                 //retorna true o false si este objeto existe el arreglo
                 let existe = this.newProducts.some((element)=>{ 
@@ -118,6 +124,7 @@ export default {
                     stock: producto.stock,
                     image: producto.image,
                     cantidad: 1,
+                    total: producto.price,
                 }
 
                 this.newProducts.push(product);
@@ -128,7 +135,8 @@ export default {
 
                     if(element.id === producto.id){
 
-                        element.cantidad = element.cantidad+1;
+                        element.cantidad = element.cantidad+1; 
+                        element.total = element.cantidad*element.price;
                         return element;
 
                     }else{
@@ -184,6 +192,7 @@ export default {
             this.producto = await this.extraerData();
             this.productoTotal = this.producto;
         }
+ 
     }
   
 </script>
