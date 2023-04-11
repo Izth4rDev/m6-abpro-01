@@ -1,10 +1,10 @@
 <template>
     <headerComp></headerComp>
-     <section class="h-100" style="background-color: #eee;">
+     <section class="carrito__compras">
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-10">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
                         <h3 class="fw-normal mb-0 text-black">Carrito de compra</h3>
                     <!-- <div>
                         <p class="mb-0"><span class="text-muted">Ordenado por:</span> <a href="#!" class="text-body">precio <i
@@ -50,7 +50,8 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <button type="button" class="btn btn-warning btn-block btn-lg">Procesar el pago</button>
+                            <button v-on:click="vaciarCarro" type="button" class="btn-vaciar">Vaciar Carrito</button>
+                            <button type="button" class="btn-procesar">Procesar el pago</button>
                         </div>
                     </div>
                 </div>
@@ -59,10 +60,11 @@
     </section>
 
    <!-- Buscar productos    -->
-   <div class="input-group">
+   <div class="seccion__buscar">
          <input id="inputBuscador" v-model="inputBuscador" v-on:keyup="buscarProducto()" type="Buscar" class="form-control rounded" placeholder="Buscar" aria-label="Buscar" aria-describedby="search-addon"  />
-        <button type="button" class="btn btn-outline-primary" v-on:click="buscarProducto()">Buscar</button>
+        <button type="button" class="btn-buscar" v-on:click="buscarProducto()">Buscar</button>
     </div>
+    
     <div class="container row">
         <template  v-for="fila in producto" :key="fila.name">
             <div class="card col-3 mx-2 mt-4" v-if="fila.stock > 0">
@@ -75,7 +77,6 @@
                             <p class="card-text">{{fila.stock}}</p>
                             <a href="#" v-on:click="registrarProducto(fila)" class="btn btn-primary">Agregar</a>
                         </div>
-                        
                     </div>
             </div>
         </template>
@@ -169,6 +170,9 @@ export default {
                 }
                 
             },
+             vaciarCarro(){
+               this.newProducts = []
+            },
             async extraerData() {
                 let resultado;
             try {
@@ -193,4 +197,97 @@ export default {
   
 </script>
 
+<style>
+.card-title{
+padding-top: 40px;
+text-align: left;
+font-family: 'Montserrat', sans-serif;
+}
 
+.card-body{
+padding-top: 40px;
+text-align: left;
+font-family: 'Montserrat', sans-serif;
+}
+
+.btn-agregar{
+background-color: #EA4C89;
+border-radius: 8px;
+border-style: none;
+box-sizing: border-box;
+color: #FFFFFF;
+cursor: pointer;
+display: inline-block;
+font-size: 14px;
+font-weight: 500;
+height: 40px;
+line-height: 20px;
+list-style: none;
+margin: 0;
+margin-top: auto;
+outline: none;
+padding: 10px 16px;
+position: relative;
+text-align: center;
+text-decoration: none;
+transition: color 100ms;
+vertical-align: baseline;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+font-family: 'Montserrat', sans-serif;
+}
+
+.btn-agregar:hover,
+.btn-agregar:focus {
+background-color: #F082AC;
+color: #424242;
+font-family: 'Montserrat', sans-serif;
+}
+
+.seccion__buscar{
+display: flex;
+padding-left: 5.5em;
+padding-right: 7em;
+}
+
+.btn-buscar{
+width: 10em;
+border-radius: 2px;
+background-color: #F082AC;
+color: #ffffff;
+text-align: center;
+/* padding: 1.1em; */
+/* margin-bottom: 5em; */
+font-family: 'Montserrat', sans-serif;
+cursor: pointer;
+}
+
+.btn-procesar,
+.btn-vaciar{
+width: 30em;
+border-radius: 2px;
+background-color: #F082AC;
+color: #ffffff;
+text-align: center;
+font-family: 'Montserrat', sans-serif;
+cursor: pointer;
+}
+
+.btn-buscar:hover,
+.btn-buscar:focus,
+.btn-procesar:hover,
+.btn-procesar:focus{
+background-color: #ef8db3;
+color: #424242; 
+}
+
+.btn-vaciar{
+    margin-right: 18em;
+}
+
+.carrito__compras{
+font-family: 'Montserrat', sans-serif;
+}
+
+</style>

@@ -1,5 +1,6 @@
 <template>
 <div>
+    <div class="img"><img alt="Vue logo" src="../assets/logo.png" width="100"/></div>
     <h2>Iniciar sesión</h2>
     <form @submit.prevent="login">
     <div>
@@ -11,20 +12,18 @@
         <input type="password" id="password" v-model="password" placeholder="tu contraseña" required>
     </div>
     </form>    
-    <div class="btn"><button v-on:click="login()" type="submit">Iniciar sesión</button></div>
-    <div v-if="error" v-bind:class="clase">{{ error }}</div>
-    <div v-else v-bind:class="clase">{{ error }}</div>
+    <div class="btn"><button type="submit" v-on:click="login()">Iniciar sesión</button></div>
+    <div v-if="error" class="error">{{ error }}</div>
 </div>
 </template>
 
 <script>
-export default {    
+export default {
 data() {
     return {
     email: '',
     password: '',
     error: '',
-    clase: ''
     };
 },
 methods: {
@@ -92,27 +91,46 @@ width: 100%;
 }
 
 button {
-background-color: #007bff;
-color: #fff;
-text-decoration: none;
+background-color: #EA4C89;
+border-radius: 8px;
 border-style: none;
-padding: 10px 20px;
+box-sizing: border-box;
+color: #FFFFFF;
 cursor: pointer;
+display: inline-block;
+font-size: 14px;
+font-weight: 500;
+height: 50px;
+width: 20em;
+line-height: 20px;
+list-style: none;
+margin: 0;
+margin-top: auto;
+outline: none;
+padding: 10px 20px;
+position: relative;
+text-align: center;
+text-decoration: none;
+transition: color 100ms;
+vertical-align: baseline;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
 font-family: 'Montserrat', sans-serif;
 }
 
 button:hover {
-background-color: #0069d9;
+background-color: #F082AC;
+color: #424242;
+font-family: 'Montserrat', sans-serif;
 }
 
 .error {
 color: red;
 margin-top: 20px;
 }
-
-.success{
-    color: green;
-    margin-top: 20px;
+.img{
+    text-align: center;
+    padding-top: 5em;
 }
-
 </style>
