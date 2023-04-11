@@ -48,6 +48,7 @@
 
                     <div class="card">
                         <div class="card-body">
+                            <button v-on:click="vaciarCarro" type="button" class="btn-vaciar">Vaciar Carrito</button>
                             <button type="button" class="btn-procesar">Procesar el pago</button>
                         </div>
                     </div>
@@ -72,7 +73,7 @@
             <img v-bind:src="fila.image" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{fila.name}}</h5>
-                <p class="card-text">Material: {{fila.description}}</p>
+                <p class="card-text">Material:{{fila.description}}</p>
                 <p class="card-text">$ {{fila.price}}</p> 
                 <p class="card-text">Stock: {{fila.stock}}</p>
                 <a href="#" v-on:click="registrarProducto(fila)" class="btn-agregar">Agregar</a>
@@ -160,6 +161,9 @@ export default {
                 })
                 }
                 
+            },
+             vaciarCarro(){
+               this.newProducts = []
             },
             async extraerData() {
                 let resultado;
@@ -250,7 +254,8 @@ font-family: 'Montserrat', sans-serif;
 cursor: pointer;
 }
 
-.btn-procesar{
+.btn-procesar,
+.btn-vaciar{
 width: 30em;
 border-radius: 2px;
 background-color: #F082AC;
@@ -266,6 +271,10 @@ cursor: pointer;
 .btn-procesar:focus{
 background-color: #ef8db3;
 color: #424242; 
+}
+
+.btn-vaciar{
+    margin-right: 18em;
 }
 
 .carrito__compras{
