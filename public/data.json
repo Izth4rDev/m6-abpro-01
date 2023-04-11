@@ -1,9 +1,9 @@
 [
     {"id": "1",
     "name": "Poleron rana",
-    "description": "algodon",
-    "price": "18990",
-    "stock": "20",
+    "description": "material de algodon",
+    "price": "18000",
+    "stock": "0",
     "image": "https://http2.mlstatic.com/D_NQ_NP_974756-CBT44451545135_122020-O.jpg"},
     
     {"id": "2",
