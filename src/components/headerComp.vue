@@ -1,7 +1,7 @@
 <template>  
     <div class="container-fluid d-flex justify-content-around align-items-center border">
         <div id="logo">
-            <img src="../assets/logo-p.png" alt="" width="250">
+            <a v-on:click="Home"><img src="../assets/logo-p.png" alt="" width="250"></a>
         </div>
         <div class="d-flex">
             <nav>
@@ -17,6 +17,16 @@
 
 
 <script>
+export default {
+    data (){
+
+    },
+    methods:{
+        Home(){
+            this.$router.push('/HomeRoot');
+        }
+    }
+}
 </script>
 
 
