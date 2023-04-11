@@ -1,4 +1,5 @@
 <template>
+    <headerComp></headerComp>
      <section class="carrito__compras">
         <div class="container h-100 py-5">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -71,9 +72,9 @@
             <img v-bind:src="fila.image" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{fila.name}}</h5>
-                <p class="card-text">{{fila.description}}</p>
-                <p class="card-text">{{fila.price}}</p> 
-                <p class="card-text">{{fila.stock}}</p>
+                <p class="card-text">Material: {{fila.description}}</p>
+                <p class="card-text">$ {{fila.price}}</p> 
+                <p class="card-text">Stock: {{fila.stock}}</p>
                 <a href="#" v-on:click="registrarProducto(fila)" class="btn-agregar">Agregar</a>
             </div>
         </div>

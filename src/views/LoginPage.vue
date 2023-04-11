@@ -12,7 +12,7 @@
         <input type="password" id="password" v-model="password" placeholder="tu contraseña" required>
     </div>
     </form>    
-    <div class="btn"><button type="submit">Iniciar sesión</button></div>
+    <div class="btn"><button type="submit" v-on:click="login()">Iniciar sesión</button></div>
     <div v-if="error" class="error">{{ error }}</div>
 </div>
 </template>
