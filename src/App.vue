@@ -1,5 +1,6 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <headerComp />
+  <!-- <img src="./assets/logo.png" alt="" width="20"> -->
   <router-view />
 </template>
 
@@ -15,6 +16,5 @@ export default {
   font-family: 'Montserrat', sans-serif;
   margin:0px;
   padding:0px;
-
 }
 </style>
