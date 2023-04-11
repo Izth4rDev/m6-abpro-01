@@ -79,18 +79,20 @@
         </div>
     </template>
 </div>
-   
+<footerComp></footerComp>
 </template>
 
 <script>
 
 import headerComp from '../components/headerComp.vue'
+import footerComp from '../components/footerComp.vue'    
 
 export default {
-   
+
     name: "productoPage",
     components:{
-        headerComp
+        headerComp,
+        footerComp
     },
     data: function() {
         return {

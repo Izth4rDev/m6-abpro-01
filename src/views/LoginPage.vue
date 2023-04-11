@@ -15,10 +15,19 @@
     <div class="btn"><button type="submit" v-on:click="login()">Iniciar sesión</button></div>
     <div v-if="error" class="error">{{ error }}</div>
 </div>
+<footerComp></footerComp>
 </template>
 
 <script>
+import footerComp from '../components/footerComp.vue'    
+
 export default {
+
+    name: "productoPage",
+    components:{
+        footerComp
+    },
+
 data() {
     return {
     email: '',
