@@ -102,8 +102,14 @@ export default {
         },
     methods:{
         calcularProducto: function (elemento){
-            elemento.total = elemento.cantidad*elemento.price;
-            console.log (elemento.total)
+            if (elemento.cantidad > elemento.stock){
+                alert("Cantidad es mayor al stock del producto")
+                elemento.cantidad = elemento.stock
+            }else {
+                elemento.total = elemento.cantidad*elemento.price;
+    
+            }
+
         },
             registrarProducto: function (producto){    
                 //retorna true o false si este objeto existe el arreglo
