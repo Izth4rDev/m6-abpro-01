@@ -81,7 +81,7 @@
           </div>
         </template>
     </div>
-   
+   <footerComp></footerComp>
 </template>
 
 <script>
