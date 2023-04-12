@@ -64,25 +64,22 @@
          <input id="inputBuscador" v-model="inputBuscador" v-on:keyup="buscarProducto()" type="Buscar" class="form-control rounded" placeholder="Buscar" aria-label="Buscar" aria-describedby="search-addon"  />
         <button type="button" class="btn-buscar" v-on:click="buscarProducto()">Buscar</button>
     </div>
-    
-    <div class="container row">
-        <template  v-for="fila in producto" :key="fila.name">
-            <div class="card col-3 mx-2 mt-4" v-if="fila.stock > 0">
-                    <div style="width: 18rem;">
-                        <img v-bind:src="fila.image" class="card-img-top" alt="...">
-                        <div class="card-body">  
-                            <h5 class="card-title">{{fila.name}}</h5>
-                            <p class="card-text">{{fila.description}}</p>
-                            <p class="card-text">{{fila.price}}</p> 
-                            <p class="card-text">{{fila.stock}}</p>
-                            <a href="#" v-on:click="registrarProducto(fila)" class="btn btn-primary">Agregar</a>
-                        </div>
-                    </div>
-            </div>
-        </template>
-    </div>
-   
 
+<div class="container-fluid row justify-content-center gap-3 ">
+ <template  v-for="fila in producto" :key="fila.name">
+        <div class="card col-3 mx-2 mt-4" v-if="fila.stock > 0" style="width: 18rem; margin: 3em;" >  
+                <img v-bind:src="fila.image" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{fila.name}}</h5>
+                    <p class="card-text">Material:{{fila.description}}</p>
+                    <p class="card-text">$ {{fila.price}}</p> 
+                    <p class="card-text">Stock: {{fila.stock}}</p>
+                    <a href="#" v-on:click="registrarProducto(fila)" class="btn-agregar">Agregar</a>
+                </div>
+        </div>
+    </template>
+</div>
+   
 </template>
 
 <script>
@@ -105,8 +102,14 @@ export default {
         },
     methods:{
         calcularProducto: function (elemento){
-            elemento.total = elemento.cantidad*elemento.price;
-            console.log (elemento.total)
+            if (elemento.cantidad > elemento.stock){
+                alert("Cantidad es mayor al stock del producto")
+                elemento.cantidad = elemento.stock
+            }else {
+                elemento.total = elemento.cantidad*elemento.price;
+    
+            }
+
         },
             registrarProducto: function (producto){    
                 //retorna true o false si este objeto existe el arreglo
