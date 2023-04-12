@@ -9,13 +9,15 @@
       </div>
     </div>
   </div>
-  <footerComp></footerComp>
+  <template>
+    <footerComp></footerComp>
+  </template>
 </template>
 
 <script>
 // @ is an alias to /src
 import headerComp from '../components/headerComp.vue'
-import footerComp from '../components/footerComp.vue';
+import footerComp from '../components/footerComp.vue'
 
 export default {
 
